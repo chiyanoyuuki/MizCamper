@@ -1,1 +1,135 @@
-/* You can add global styles to this file, and also import other style files */
+html{
+    overflow:hidden;
+}
+
+body{
+    margin:0;
+}
+
+.video{
+    min-width: 100%; 
+    min-height: 100%; 
+}
+
+.video-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    overflow: hidden;
+    width:100%;
+    height:100%;
+  }
+  .content{
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    width:100%;
+    height:100%;
+  }
+  .logo{
+    width:30%;
+    min-width: 300px;
+    top:20%;
+    position: absolute;
+    opacity: 0;
+  }
+  .fleche{
+    width:10%;
+    min-width:100px;
+    height: fit-content;
+    position:absolute;
+    transition: 0.5s;
+    top:35%;
+  }
+  .clicakble, button{
+    transition: 0.5s;
+  }
+  .clickable:hover, button:hover{
+    cursor:pointer;
+    transform:scale(1.2);
+  }
+  .flechegauche{
+    left:2%;
+  }
+  .flechedroite{
+    right:2%;
+  }
+
+  img, .bloc, button{
+    filter:drop-shadow(5px 5px 5px black);
+  }
+
+  .contenu{
+    width: 100%;
+  position: absolute;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  transition:2s;
+  }
+
+  .disabled{
+    pointer-events: none;
+    opacity: 0 !important;
+  }
+
+  .bloc{
+    background-color: #fffb;
+  width: 60%;
+  margin: auto;
+  padding: 30px;
+  border-radius: 10px;
+  position: relative;
+  }
+  .bloc p{
+    text-align: center;
+    font-size: 30px;
+    margin:0;
+  }
+  .bold{
+    font-weight: bold;
+    font-size: 40px!important;
+    margin: 20px 0px !important;
+  }
+  button{
+    margin: auto;
+    font-size: 30px;
+  padding: 10px 20px;  
+  border: none;
+  border-radius: 20px;
+  margin-top:20px;
+  display:flex;
+  }
+  .images{
+    display: flex;
+    white-space: pre;
+    flex-flow: wrap;
+    justify-content: center;
+  }
+  .images img{
+    width: 30%;
+  border-radius: 10%;
+  margin: 10px;
+  height: 200px;
+  }
+  .bloc{
+    transition: 0.5s;
+  }
+  .qui{
+    width: 50%;
+  margin: auto;
+  display: flex;
+  margin-top: 5%;
+  }
+  .toplogo{
+    position: absolute;
+  top: 2%;
+  left: 2%;
+  width: 10%;
+  opacity: 0.5;
+  transition:0.5s;
+  }
+  .hidden{
+    opacity:0!important;
+  }
