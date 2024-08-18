@@ -4,6 +4,7 @@ html{
 
 body{
     margin:0;
+    overflow:hidden;
 }
 
 .video{
@@ -84,12 +85,12 @@ body{
   }
   .bloc p{
     text-align: center;
-    font-size: 30px;
+    font-size: 2vh;
     margin:0;
   }
   .bold{
     font-weight: bold;
-    font-size: 40px!important;
+    font-size: 3vh!important;
     margin: 20px 0px !important;
   }
   button{
@@ -110,8 +111,8 @@ body{
   .images img{
     width: 30%;
   border-radius: 10%;
-  margin: 10px;
-  height: 200px;
+  margin: 5px;
+  height: 15vw;
   }
   .bloc{
     transition: 0.5s;
