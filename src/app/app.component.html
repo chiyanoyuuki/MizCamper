@@ -92,6 +92,11 @@
           expérience unique et immersive au coeur des plus beaux paysages de Corse et sa culture très
           riche.</p>
         <img class="qui" src="qui.png" />
+      </div>
+    </div>
+
+    <div class="contenu" [style.left]="-page*innerWidth+6*innerWidth+'px'" >
+      <div class="bloc" [style.top]="50*scroll+'px'">
         <p class="bold">NOUS CONTACTER</p>
         <p>Mail : mizcamper&#64;gmail.com</p>
         <p>Téléphone : numéro de tel à venir</p>
@@ -100,13 +105,24 @@
       </div>
     </div>
 
-    <img [class.hidden]="page==0" class="toplogo" src="logo.png" />
+    <div class="topcontent" [class.hidden]="page==0">
+      <img  src="logo.png" class="clickable" (click)="page=1"/>
+      <div class="flex reseaux">
+        <img *ngFor="let reseau of reseaux" src="{{reseau.img}}.png" (click)="link(reseau.link)" class="clickable"/>
+      </div>
+      <div>
+        <p *ngFor="let p of pages;let i=index" class="clickable" [class.selected]="page-1==i" (click)="page=i+1">{{p}}</p>
+      </div>
+    </div>
+    <div class="toprightcontent">
+      <img class="clickable" src="{{sound?'soundon':'soundoff'}}.png" (click)="clickSound()"/>
+    </div>
     <img [class.disabled]="page==0" (click)="scroll=0;page=page-1" class="fleche flechegauche clickable" [@logoFadeIn]="logoState" src="fleche2.png"/>
-    <img [class.disabled]="page==5" (click)="scroll=0;page=page+1" class="fleche flechedroite clickable" [@logoFadeIn]="logoState" src="fleche.png"/>
+    <img [class.disabled]="page==pages.length" (click)="scroll=0;page=page+1" class="fleche flechedroite clickable" [@logoFadeIn]="logoState" src="fleche.png"/>
   </div>
 
   <div class="video-container">
-    <video class="video"  loop autoplay [muted]="'muted'">
+    <video id="video" class="video"  loop autoplay [muted]="'muted'">
       <source src="vid0.mp4" type="video/mp4" />
     </video>
   </div>

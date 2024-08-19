@@ -1,3 +1,12 @@
+@font-face {
+  font-family: Anton;
+  src: url(../public/Anton.ttf) format("opentype");
+}
+@font-face {
+  font-family: Raleway;
+  src: url(../public/Raleway.ttf) format("opentype");
+}
+
 html{
     overflow:hidden;
 }
@@ -5,6 +14,10 @@ html{
 body{
     margin:0;
     overflow:hidden;
+}
+
+p, button{
+  font-family: 'Raleway', 'arial', sans-serif;
 }
 
 .video{
@@ -41,7 +54,7 @@ body{
     height: fit-content;
     position:absolute;
     transition: 0.5s;
-    top:35%;
+    top:40%;
   }
   .clicakble, button{
     transition: 0.5s;
@@ -76,11 +89,10 @@ body{
   }
 
   .bloc{
-    background-color: #fffb;
+    background-color: #ffffffcc;
   width: 60%;
   margin: auto;
   padding: 30px;
-  border-radius: 10px;
   position: relative;
   }
   .bloc p{
@@ -92,6 +104,7 @@ body{
     font-weight: bold;
     font-size: 3vh!important;
     margin: 20px 0px !important;
+    font-family: 'Anton', 'arial', sans-serif;
   }
   button{
     margin: auto;
@@ -110,9 +123,8 @@ body{
   }
   .images img{
     width: 30%;
-  border-radius: 10%;
   margin: 5px;
-  height: 15vw;
+  height: 12vw;
   }
   .bloc{
     transition: 0.5s;
@@ -123,7 +135,13 @@ body{
   display: flex;
   margin-top: 5%;
   }
-  .toplogo{
+  .flex{
+    display:flex;
+  }
+  .reseaux img{
+    width:20%!important;
+  }
+  .topcontent{
     position: absolute;
   top: 2%;
   left: 2%;
@@ -131,6 +149,30 @@ body{
   opacity: 0.5;
   transition:0.5s;
   }
+  .topcontent p{
+    margin:5%;
+    color:white;
+    filter:drop-shadow(5px 5px 5px black);
+  }
+  .selected{
+    color:#502020!important;
+  }
+  .topcontent img{
+    width:100%;
+  }
+  .topcontent *{
+    transition:0.5s;
+  }
   .hidden{
     opacity:0!important;
+  }
+  .toprightcontent{
+    position: absolute;
+  top: 2%;
+  right: 2%;
+  width: 4%;
+  }
+  .toprightcontent img{
+    width:100%;
+    transition:0.5s;
   }
