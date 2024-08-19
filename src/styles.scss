@@ -1,12 +1,3 @@
-@font-face {
-  font-family: Anton;
-  src: url(../public/Anton.ttf) format("opentype");
-}
-@font-face {
-  font-family: Raleway;
-  src: url(../public/Raleway.ttf) format("opentype");
-}
-
 html{
     overflow:hidden;
 }
@@ -54,7 +45,7 @@ p, button{
     height: fit-content;
     position:absolute;
     transition: 0.5s;
-    top:45%;
+    top:50%;
   }
   .clicakble, button{
     transition: 0.5s;
