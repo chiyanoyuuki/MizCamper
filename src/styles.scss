@@ -1,14 +1,21 @@
+@font-face {
+  font-family: anton;
+  src: url(../public/anton.ttf) format("opentype");
+}
+
 html{
     overflow:hidden;
 }
 
+*{
+  font-family: 'anton';
+  font-size: 2vh;
+}
+
+
 body{
     margin:0;
     overflow:hidden;
-}
-
-p, button{
-  font: 1.1rem "Raleway", sans-serif;
 }
 
 .video{
@@ -45,7 +52,7 @@ p, button{
     height: fit-content;
     position:absolute;
     transition: 0.5s;
-    top:50%;
+    top:40%;
   }
   .clicakble, button{
     transition: 0.5s;
@@ -88,21 +95,17 @@ p, button{
   }
   .bloc p{
     text-align: center;
-    font-size: 2vh;
     margin:0;
   }
   .bold{
     font-weight: bold;
-    font-size: 3vh!important;
+    font-size:2.5vh!important;
     margin: 20px 0px !important;
-    font: 1.1rem "Anton", sans-serif;
   }
   button{
     margin: auto;
-    font-size: 30px;
   padding: 10px 20px;  
   border: none;
-  border-radius: 20px;
   margin-top:20px;
   display:flex;
   }
@@ -129,27 +132,54 @@ p, button{
   .flex{
     display:flex;
   }
+  .reseaux{
+    position: absolute;
+  bottom: 5%;
+  left: 5%;
+  width: 3vw;
+  opacity: 0.8;
+  transition:0.5s;
+  }
   .reseaux img{
-    width:20%!important;
+    width:100%;
+    filter: brightness(0) invert(1) drop-shadow(5px 5px 5px black);
+    transition:0.5s;
   }
   .topcontent{
     position: absolute;
   top: 2%;
   left: 2%;
-  width: 10%;
-  opacity: 0.5;
+  width: 96%;
+  opacity: 0.8;
   transition:0.5s;
+  height:18%;
+  }
+  .topcontent .toplogo{
+    width:15vh;
+    height:15vh;
   }
   .topcontent p{
-    margin:5%;
     color:white;
+    top:5%;
     filter:drop-shadow(5px 5px 5px black);
+    height: fit-content;
+    font-weight:bold;
+  }
+  .topcontent div{
+    display:flex;
+    justify-content: space-evenly;
+    width:86%;
+  }
+  .imgson{
+    transition:0.5s;
+    filter: brightness(0) invert(1) drop-shadow(5px 5px 5px black);
+    height:6vh;
+    width: 6vh;
+    right: 0px;
+    position: absolute;
   }
   .selected{
     color:#502020!important;
-  }
-  .topcontent img{
-    width:100%;
   }
   .topcontent *{
     transition:0.5s;
@@ -163,7 +193,21 @@ p, button{
   right: 2%;
   width: 4%;
   }
-  .toprightcontent img{
-    width:100%;
-    transition:0.5s;
+  .bloc .svg{
+    width: 50px;
+    margin:0px 20px;
+  filter: unset;
+  }
+  .invert{
+    transform:scaleX(-1);
+  }
+  .justcenter{
+    justify-content: center;
+  }
+  .reserver{
+    position:absolute;
+    right:5%;
+    bottom:5%;
+    z-index:1;
+    opacity:0.8;
   }

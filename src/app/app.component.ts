@@ -37,7 +37,7 @@ export class AppComponent implements OnInit
   public reseaux = [
     {
       img:"insta",
-      link:"https://www.instagram.com/laurine.spn/"
+      link:"https://www.instagram.com/miz.camper/"
     }
   ];
 

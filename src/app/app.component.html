@@ -15,7 +15,6 @@
             personnaliser au mieux vos vacances. La <b>Corse</b> est tellement riche par sa <b>culture</b> et ses
             <b>magnifiques paysages</b>. Avec <b>MIZCAMPER</b> vous pourrez la découvrir <b>à votre rythme</b> et sans
             pression, avec tout le confort nécessaire pour passer des vacances de rêve !</p>
-        <button>Réserver</button>
       </div>
     </div>
 
@@ -58,7 +57,11 @@
       <div class="bloc" [style.top]="50*scroll+'px'">
         <p class="bold">OPTIONS ET ACCESSOIRES</p>
         <p>Pour personnaliser au mieux votre aventure, nous vous proposons différents accessoires à rajouter.</p>
-        <p class="bold">ENGENDRANT UN SUPPLEMENT</p>
+        <div class="flex justcenter">
+          <img class="svg" src="0.svg" />
+          <p class="bold">ENGENDRANT UN SUPPLEMENT</p>
+          <img class="svg invert" src="0.svg" />
+        </div>
         <p>- Draps (1 jeu) (10€)</p>
         <p>- Serviette de bain (x2) (10€)</p>
         <p>- Kit de plage (serviettes, masque, tuba, raquettes) (20€)</p>
@@ -73,7 +76,11 @@
         <p>- Nettoyage fin de séjour (40€)</p>
         <p>- Récupération des clients à l’aéroport de Figari (10€)</p>
         <p>- Récupération des clients au port de Porto-Vecchio (30 €)</p>
-        <p class="bold">INCLUS SANS SUPPLEMENT</p>
+        <div class="flex justcenter">
+          <img class="svg" src="1.svg" />
+          <p class="bold">INCLUS SANS SUPPLEMENT</p>
+          <img class="svg invert" src="1.svg" />
+        </div>
         <p>- Matériel de camping (table et chaises)</p>
         <p>- Vaisselle</p>
         <p>- Cafetière</p>
@@ -105,21 +112,23 @@
       </div>
     </div>
 
-    <div class="topcontent" [class.hidden]="page==0">
-      <img  src="logo.png" class="clickable" (click)="page=1"/>
-      <div class="flex reseaux">
-        <img *ngFor="let reseau of reseaux" src="{{reseau.img}}.png" (click)="link(reseau.link)" class="clickable"/>
-      </div>
+    <div class="flex topcontent" [class.hidden]="page==0">
+      <img  src="logo.png" class="clickable toplogo" (click)="page=1"/>
       <div>
-        <p *ngFor="let p of pages;let i=index" class="clickable" [class.selected]="page-1==i" (click)="page=i+1">{{p}}</p>
+        <p *ngFor="let p of pages;let i=index" class="clickable" [class.selected]="page-1==i" (click)="scroll=0;page=i+1">{{p}}</p>
       </div>
+      <img class="clickable imgson" src="{{sound?'soundon':'soundoff'}}.png" (click)="clickSound()"/>
     </div>
-    <div class="toprightcontent">
-      <img class="clickable" src="{{sound?'soundon':'soundoff'}}.png" (click)="clickSound()"/>
+
+    <div [class.disabled]="page==0" class="flex reseaux">
+      <img *ngFor="let reseau of reseaux" src="{{reseau.img}}.png" (click)="link(reseau.link)" class="clickable"/>
     </div>
+
     <img [class.disabled]="page==0" (click)="scroll=0;page=page-1" class="fleche flechegauche clickable" [@logoFadeIn]="logoState" src="fleche2.png"/>
     <img [class.disabled]="page==pages.length" (click)="scroll=0;page=page+1" class="fleche flechedroite clickable" [@logoFadeIn]="logoState" src="fleche.png"/>
   </div>
+
+  <button [class.disabled]="page==0" class="reserver">Réserver</button>
 
   <div class="video-container">
     <video id="video" class="video"  loop autoplay [muted]="'muted'">
