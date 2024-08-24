@@ -3,13 +3,25 @@
   src: url(../public/anton.ttf) format("opentype");
 }
 
+@font-face {
+  font-family: glacial;
+  src: url(../public/glacial.otf) format("opentype");
+}
+
 html{
     overflow:hidden;
 }
 
 *{
-  font-family: 'anton';
   font-size: 2vh;
+}
+
+.bold, button{
+  font-family: 'anton'!important;
+}
+
+p, b{
+  font-family: 'glacial'!important;
 }
 
 
