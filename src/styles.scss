@@ -13,7 +13,7 @@ html{
 }
 
 *{
-  font-size: 2vh;
+  font-size: 2.3vh;
 }
 
 .bold, button{
@@ -111,7 +111,7 @@ body{
   }
   .bold{
     font-weight: bold;
-    font-size:2.5vh!important;
+    font-size:3vh!important;
     margin: 20px 0px !important;
   }
   button{
@@ -131,6 +131,11 @@ body{
     width: 30%;
   margin: 5px;
   height: 12vw;
+  }
+  .images p{
+  margin: 5px;  
+  padding: 0px 1vw;
+  white-space: wrap;
   }
   .bloc{
     transition: 0.5s;

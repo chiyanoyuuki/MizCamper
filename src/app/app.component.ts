@@ -33,7 +33,7 @@ export class AppComponent implements OnInit
   public volume = 0.01;
   public volumeinterval: any;
 
-  public pages = ["Accueil","La Corse","Nos Vans","Options et Accessoires","Qui sommes nous","Nous contacter"];
+  public pages = ["Accueil","La Corse","Nos Vans","Options et Accessoires","Qui sommes-nous ?","Nous contacter"];
   public reseaux = [
     {
       img:"insta",
