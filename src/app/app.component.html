@@ -1,11 +1,11 @@
 <div [style.height]="innerHeight+'px'">
   <div class="content">
 
-    <div class="contenu" [style.left]="-page*innerWidth+'px'">
+    <div class="contenu" [style.left]="-page*innerWidth+'px'" [style.top]="reserver?'-'+innerHeight+'px':'0px'">
       <img src="logo.png" class="logo" [@logoFadeIn]="logoState" />
     </div>
 
-    <div class="contenu" [style.left]="-page*innerWidth+innerWidth+'px'">
+    <div class="contenu" [style.left]="-page*innerWidth+innerWidth+'px'" [style.top]="reserver?'-'+innerHeight+'px':'0px'">
       <div class="bloc" [style.top]="50*scroll+'px'">
         <p class="bold">LOCATION DE VANS AMENAGES AU DEPART DE PIANOTTOLI-CALDARELLO</p>
         <p>Situé à seulement <b>10 minutes de l’aéroport de Figari</b> et <b>30 minutes du port de Porto-Vecchio</b>,
@@ -18,7 +18,7 @@
       </div>
     </div>
 
-    <div class="contenu" [style.left]="-page*innerWidth+2*innerWidth+'px'" >
+    <div class="contenu" [style.left]="-page*innerWidth+2*innerWidth+'px'" [style.top]="reserver?'-'+innerHeight+'px':'0px'">
       <div class="bloc" [style.top]="50*scroll+'px'">
         <p class="bold">UNE TOTALE IMMERSION DANS LES PLUS BEAUX PAYSAGES CORSES</p>
         <p>Qui n’a jamais rêvé de se réveiller le matin avec une <b>vue imprenable sur la mer</b> ? De profiter du
@@ -40,7 +40,7 @@
       </div>
     </div>
 
-    <div class="contenu" [style.left]="-page*innerWidth+3*innerWidth+'px'" >
+    <div class="contenu" [style.left]="-page*innerWidth+3*innerWidth+'px'" [style.top]="reserver?'-'+innerHeight+'px':'0px'">
       <div class="bloc" [style.top]="50*scroll+'px'">
         <p class="bold">NOS VANS AMENAGES</p>
         <p>Page en construction</p>
@@ -53,7 +53,7 @@
       </div>
     </div>
 
-    <div class="contenu" [style.left]="-page*innerWidth+4*innerWidth+'px'">
+    <div class="contenu" [style.left]="-page*innerWidth+4*innerWidth+'px'" [style.top]="reserver?'-'+innerHeight+'px':'0px'">
       <div class="bloc" [style.top]="50*scroll+'px'">
         <p class="bold">OPTIONS ET ACCESSOIRES</p>
         <p>Pour personnaliser au mieux votre aventure, nous vous proposons différents accessoires à rajouter.</p>
@@ -95,7 +95,7 @@
       </div>
     </div>
 
-    <div class="contenu" [style.left]="-page*innerWidth+5*innerWidth+'px'" >
+    <div class="contenu" [style.left]="-page*innerWidth+5*innerWidth+'px'" [style.top]="reserver?'-'+innerHeight+'px':'0px'">
       <div class="bloc" [style.top]="50*scroll+'px'">
         <p class="bold">QUI SOMMES-NOUS ?</p>
         <p>Laurine et Lucas, jeune couple vivant au sud de la Corse, passionnés par l’aventure de la van life
@@ -106,7 +106,7 @@
       </div>
     </div>
 
-    <div class="contenu" [style.left]="-page*innerWidth+6*innerWidth+'px'" >
+    <div class="contenu" [style.left]="-page*innerWidth+6*innerWidth+'px'" [style.top]="reserver?'-'+innerHeight+'px':'0px'">
       <div class="bloc" [style.top]="50*scroll+'px'">
         <p class="bold">NOUS CONTACTER</p>
         <p>Mail : mizcamper&#64;gmail.com</p>
@@ -116,23 +116,58 @@
       </div>
     </div>
 
-    <div class="flex topcontent" [class.hidden]="page==0">
-      <img  src="logo.png" class="clickable toplogo" (click)="page=1"/>
-      <div>
-        <p *ngFor="let p of pages;let i=index" class="clickable" [class.selected]="page-1==i" (click)="scroll=0;page=i+1">{{p}}</p>
+    <div class="contenu" [style.top]="reserver?'0px':innerHeight+'px'">
+      <div class="bloc" [style.top]="50*scroll+'px'">
+        <p class="bold">Réserver</p>
+        <div class="formulaire">
+          <div *ngFor="let form of formulaire" class="form">
+            <p class="label">{{form.label}}</p>
+            <input *ngIf="form.type=='text'" type="text" [placeholder]="form.placeholder"/>
+            <p *ngIf="form.type=='date'" class="clickable" (click)="startCalendar()">{{!start?'Select date':getDate()}}</p>
+            <select *ngIf="form.type=='select'">
+              <option>Van 1</option>
+              <option>Van 2</option>
+            </select>
+          </div>
+        </div>
+        <button>Réserver</button>
       </div>
-      <img class="clickable imgson" src="{{sound?'soundon':'soundoff'}}.png" (click)="clickSound()"/>
     </div>
 
-    <div [class.disabled]="page==0" class="flex reseaux">
-      <img *ngFor="let reseau of reseaux" src="{{reseau.img}}.png" (click)="link(reseau.link)" class="clickable"/>
-    </div>
+    <div class="contenu" *ngIf="selectDate">
+      <div class="bloc calendar">
+        <div class="topCalendar">
+          <button (click)="onPreviousMonth()">Précédent</button>
+          <p class="bold">{{getMonthName(month)}} &nbsp; {{year}}</p>
+          <button (click)="onNextMonth()">Suivant</button>
+        </div>
+    
+        <div class="botCalendar">
+          <p *ngFor="let weekDay of weekDaysName">{{weekDay}}</p>
+          <p *ngFor="let day of monthDays" class="day clickable" [class.disableDay]="day.disabled" [class.taken]="day.taken" [class.selected]="selectedDate(day)" (mouseover)="hoverDay(day)" (click)="clickDay(day)">{{day.number}}</p>
+        </div>
 
-    <img [class.disabled]="page==0" (click)="scroll=0;page=page-1" class="fleche flechegauche clickable" [@logoFadeIn]="logoState" src="fleche2.png"/>
-    <img [class.disabled]="page==pages.length" (click)="scroll=0;page=page+1" class="fleche flechedroite clickable" [@logoFadeIn]="logoState" src="fleche.png"/>
+        <button class="closeCalendar" (click)="selectDate=false">Fermer</button>
+      </div>
+    </div>
   </div>
 
-  <button [class.disabled]="page==0" class="reserver">Réserver</button>
+  <div class="flex topcontent" [class.hidden]="page==0">
+    <img  src="logo.png" class="clickable toplogo" (click)="page=1"/>
+    <div [class.hidden]="reserver">
+      <p *ngFor="let p of pages;let i=index" class="clickable" [class.selected]="page-1==i" (click)="scroll=0;page=i+1">{{p}}</p>
+    </div>
+    <img class="clickable imgson" src="{{sound?'soundon':'soundoff'}}.png" (click)="clickSound()"/>
+  </div>
+
+  <div [class.disabled]="page==0" class="flex reseaux">
+    <img *ngFor="let reseau of reseaux" src="{{reseau.img}}.png" (click)="link(reseau.link)" class="clickable"/>
+  </div>
+
+  <img [class.disabled]="page==0||reserver" (click)="scroll=0;page=page-1" class="fleche flechegauche clickable" [@logoFadeIn]="logoState" src="fleche2.png"/>
+  <img [class.disabled]="page==pages.length||reserver" (click)="scroll=0;page=page+1" class="fleche flechedroite clickable" [@logoFadeIn]="logoState" src="fleche.png"/>
+
+  <button [class.disabled]="page==0" class="reserver" (click)="reserver=!reserver">{{reserver?'Retour':'Réserver'}}</button>
 
   <div class="video-container">
     <video id="video" class="video"  loop autoplay [muted]="'muted'">
