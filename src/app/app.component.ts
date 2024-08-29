@@ -32,10 +32,10 @@ export class AppComponent implements OnInit
   public logoState = "0";
   public logoInterval: any;
 
-  public page = 1;
+  public page = 0;
   public scroll = 0;
 
-  public reserver = true;
+  public reserver = false;
 
   public nbClick = 0;
   public sound = false;
