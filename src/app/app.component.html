@@ -144,7 +144,12 @@
     
         <div class="botCalendar">
           <p *ngFor="let weekDay of weekDaysName">{{weekDay}}</p>
-          <p *ngFor="let day of monthDays" class="day clickable" [class.disableDay]="day.disabled" [class.taken]="day.taken" [class.selected]="selectedDate(day)" (mouseover)="hoverDay(day)" (click)="clickDay(day)">{{day.number}}</p>
+          <p *ngFor="let day of monthDays" class="day clickable" 
+          [class.disableDay]="day.disabled" 
+          [class.taken]="day.taken" 
+          [class.selected]="selectedDate(day)" 
+          [class.cantSelect]="cantSelect(day)"
+          (mouseover)="hoverDay(day)" (click)="clickDay(day)">{{day.number}}</p>
         </div>
 
         <button class="closeCalendar" (click)="selectDate=false">Fermer</button>

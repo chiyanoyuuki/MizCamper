@@ -265,11 +265,15 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   padding: 15px 0px;
 }
 .disableDay{
-  background-color: #20202090;
+  background-color: #20202090!important;
   pointer-events: none;
 }
 .taken{
-  background-color: #90505090;
+  background-color: #90505090!important;
+  pointer-events: none;
+}
+.cantSelect{
+  background-color: #aaaaaa90;
   pointer-events: none;
 }
 .calendar .selected{

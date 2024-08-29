@@ -55,6 +55,8 @@ export class AppComponent implements OnInit
     }
   ];
 
+  public resas:any = [];
+
   public formulaire = [
     {label:"Nom",type:"text",placeholder:"Nom.."},
     {label:"Prénom",type:"text",placeholder:"Prénom.."},
@@ -66,12 +68,58 @@ export class AppComponent implements OnInit
   public monthDays: any[] = [];
   public year: number = 0;
   public month: number = 0;
+  public resavant:any;
+  public resapres:any;
 
   constructor()
   {
     let date = new Date();
     this.year = date.getFullYear();
     this.month = date.getMonth();
+
+    let d2 = new Date();
+    d2.setDate(2);
+    d2.setMonth(8);
+    d2.setFullYear(2024);
+    let d3 = new Date();
+    d3.setDate(3);
+    d3.setMonth(8);
+    d3.setFullYear(2024);
+
+    this.resas.push({start:d2,end:d3});
+
+    d2 = new Date();
+    d2.setDate(6);
+    d2.setMonth(8);
+    d2.setFullYear(2024);
+    d3 = new Date();
+    d3.setDate(7);
+    d3.setMonth(8);
+    d3.setFullYear(2024);
+    
+    this.resas.push({start:d2,end:d3});
+
+    d2 = new Date();
+    d2.setDate(23);
+    d2.setMonth(8);
+    d2.setFullYear(2024);
+    d3 = new Date();
+    d3.setDate(24);
+    d3.setMonth(8);
+    d3.setFullYear(2024);
+    
+    this.resas.push({start:d2,end:d3});
+
+    d2 = new Date();
+    d2.setDate(27);
+    d2.setMonth(8);
+    d2.setFullYear(2024);
+    d3 = new Date();
+    d3.setDate(28);
+    d3.setMonth(8);
+    d3.setFullYear(2024);
+    
+    this.resas.push({start:d2,end:d3});
   }
 
   @HostListener("wheel", ["$event"])
@@ -132,8 +180,28 @@ export class AppComponent implements OnInit
     window.open(link, "_blank");
   }
 
+  cantSelect(day:any)
+  {
+    let date = new Date();
+    date.setDate(day.number);
+    date.setMonth(day.monthIndex);
+    date.setFullYear(day.year);
+
+    if(this.resavant)
+    {
+      if(date<=this.resavant)return true;
+    }
+    if(this.resapres)
+    {
+      if(date>=this.resapres)return true;
+    }
+    return false;
+  }
+
   startCalendar()
   {
+    this.resavant = undefined;
+    this.resapres = undefined;
     this.start = undefined;
     this.end = undefined;
     this.setMonthDays(this.getCurrentMonth());
@@ -219,18 +287,10 @@ export class AppComponent implements OnInit
     d.setMonth(monthIndex);
     d.setFullYear(year);
 
-    let d2 = new Date();
-    d2.setDate(9);
-    d2.setMonth(8);
-    d2.setFullYear(2024);
-    let d3 = new Date();
-    d3.setDate(12);
-    d3.setMonth(8);
-    d3.setFullYear(2024);
-
     let day: any = {};
     if(d<date)day.disabled = true;
-    if(d2<=d&&d<=d3)day.taken = true;
+    let tmp = this.resas.find((resa:any)=>this.inRange(resa.start,d,resa.end));
+    if(tmp)day.taken = true;
     day.monthIndex = monthIndex;
     day.month = this.getMonthName(monthIndex);
     day.number = dayNumber;
@@ -239,6 +299,17 @@ export class AppComponent implements OnInit
     day.weekDayName = this.getDayName(day.weekDayNumber);
 
     return day;
+  }
+
+  inRange(start:any,date:any,end:any)
+  {
+    if(start.getFullYear() > date.getFullYear()) return false;
+    else if(end.getFullYear() < date.getFullYear()) return false;
+    else if(start.getMonth() > date.getMonth()) return false;
+    else if(end.getMonth() < date.getMonth()) return false;
+    else if(start.getFullYear() == date.getFullYear() && start.getMonth() == date.getMonth() && start.getDate() > date.getDate()) return false;
+    else if(end.getFullYear() == date.getFullYear() && end.getMonth() == date.getMonth() && end.getDate() < date.getDate()) return false;
+    else return true;
   }
 
   getMonthName(index:number)
@@ -285,6 +356,19 @@ export class AppComponent implements OnInit
       date.setFullYear(day.year);
   
       this.start = date;
+
+      let resavant = this.resas.filter((resa:any)=>resa.end<date);
+      if(resavant.length>0)
+      {
+        resavant.sort((a:any,b:any)=>{return b.end-a.end});
+        this.resavant = resavant[0].end;
+      }
+      let resapres = this.resas.filter((resa:any)=>resa.start>date);
+      if(resapres.length>0)
+      {
+        resapres.sort((a:any,b:any)=>{return a.start-b.start});
+        this.resapres = resapres[0].start;
+      }
     }
 
     let date2 = new Date();
@@ -322,23 +406,11 @@ export class AppComponent implements OnInit
 
     if(this.start>this.end)
     {
-      if(this.start.getFullYear() < date.getFullYear()) return false;
-      else if(this.start.getMonth() < date.getMonth()) return false;
-      else if(this.start.getDate() < date.getDate()) return false;
-      else if(this.end.getFullYear() > date.getFullYear()) return false;
-      else if(this.end.getMonth() > date.getMonth()) return false;
-      else if(this.end.getDate() > date.getDate()) return false;
-      else return true;
+      return this.inRange(this.end,date,this.start);
     }
     else
     {
-      if(this.start.getFullYear() > date.getFullYear()) return false;
-      else if(this.start.getMonth() > date.getMonth()) return false;
-      else if(this.start.getDate() > date.getDate()) return false;
-      else if(this.end.getFullYear() < date.getFullYear()) return false;
-      else if(this.end.getMonth() < date.getMonth()) return false;
-      else if(this.end.getDate() < date.getDate()) return false;
-      else return true;
+      return this.inRange(this.start,date,this.end);
     }
   }
 
